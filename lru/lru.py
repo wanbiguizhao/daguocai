@@ -66,6 +66,9 @@ class LRU:
     def __init__(self,max_len=5):
         self.data_list=DoubleList()
         self.cache_dict={}
+        if max_len<1:
+            print("max_len 必须大于等于1, 将max_len=1")
+            # max_len=1
         self.MAX_LEN = max_len # 最大长度
         
 
@@ -73,7 +76,7 @@ class LRU:
         if key in self.cache_dict:
             node=self.cache_dict[key] # 索引
             node.value=value
-            self.hitNode(node)# 写操作,缓存放在第一位.
+            self.data_list.hitNode(node)# 写操作,缓存放在第一位.
         else:
             # 删除node
             while len(self.cache_dict)>= self.MAX_LEN :
