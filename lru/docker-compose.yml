@@ -1,0 +1,17 @@
+version: '3'
+services:
+  lru-service:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: lru:v0.1
+    environment:
+      - DEBUG=1
+    working_dir: /opt/apps/
+    # command: bash -c " while true ; do sleep 1; echo `date +%Y-%m-%d-%H-%M`" 当前docker-compose只用于build镜像,请执行docker-compose build"; done"
+    command: python lru.py
+    test-lru-service:
+        image: lru:v0.1
+        working_dir: /opt/apps/
+        # command: bash -c " while true ; do sleep 1; echo `date +%Y-%m-%d-%H-%M`" 当前docker-compose只用于build镜像,请执行docker-compose build"; done"
+        command: python test
