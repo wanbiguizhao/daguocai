@@ -1,7 +1,8 @@
 
 """
-LRU 算法,涉及的到
-测试案例
+@author: liukun
+@date: 2020-05-26
+@desc: 简单的LRU缓存
 
 """
 from typing import List
