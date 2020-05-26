@@ -1,2 +1,3 @@
-pytest
-Eliot
+pytest==5.4.2
+eliot==1.12.0
+eliot-tree==19.0.1
