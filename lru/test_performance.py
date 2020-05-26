@@ -66,8 +66,8 @@ def random_read_write(lru_len=100,times=20000):
 
 if __name__ == "__main__":
     hello=get_random_int(0,1500,limit=200)
-    #print(hello)
-    lru_len=500
+    #print(hello)e
+    lru_len=1000
     times=2000000
     random_wirte(lru_len,times)
     random_read(lru_len,times)
