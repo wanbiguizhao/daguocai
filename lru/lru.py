@@ -113,3 +113,4 @@ if __name__ == "__main__":
     print(lr.cache_dict)
     print(lr.get(3))
     print(lr.get(10))
+

@@ -91,14 +91,16 @@ class LRU:
     def put(self,key,value):
         if key in self.cache_dict:
             node=self.cache_dict[key] # 索引
-            node.value=value
-            self.data_list.hitNode(node)# 写操作,缓存放在第一位.
+            with start_action(action_type=u"updateNode", old_node=node.jsonify()):
+                node.value=value
+                self.data_list.hitNode(node)# 写操作,缓存放在第一位.
         else:
             # 删除node
             while len(self.cache_dict)>= self.MAX_LEN :
                 node=self.data_list.removeNode()
-                del self.cache_dict[node.key] # 删除节点
-                del node # 释放node
+                with start_action(action_type=u"delNode", old_node=node.jsonify()):
+                    del self.cache_dict[node.key] # 删除节点
+                    del node # 释放node
             new_node=Node(key,value)
             self.cache_dict[key]=new_node
             self.data_list.addNode(new_node)
@@ -119,7 +121,7 @@ if __name__ == "__main__":
     dnl=DoubleList()
     dnl.addNode(node1)
     dnl.addNode(node2)
-    lr=LRU(max_len=2)
+    lr=LRU(max_len=5)
     lr.put(1,4)
     lr.put(2,5)
     lr.put(1,5)
@@ -130,7 +132,7 @@ if __name__ == "__main__":
     print(lr.cache_dict)
     print(lr.get(3))
     print(lr.get(10))
-    batch_num=1000
+    batch_num=20
     with start_action(action_type="batch_insert_data",batch_num=batch_num):
         for i in range(batch_num):
-            lr.put(i%20, i)
+            lr.put(i%6, i)

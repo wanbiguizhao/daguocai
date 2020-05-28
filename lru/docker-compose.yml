@@ -11,7 +11,7 @@ services:
   test-lru-service:
       image: lru:v0.1
       working_dir: /opt/apps/
-      command: python test
+      command: pytest
   test-performance-service:
     image: lru:v0.1
     working_dir: /opt/apps/
