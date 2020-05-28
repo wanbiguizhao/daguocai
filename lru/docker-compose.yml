@@ -16,3 +16,9 @@ services:
     image: lru:v0.1
     working_dir: /opt/apps/
     command: python test_performance.py
+  test-log-service:
+      image: lru:v0.1
+      working_dir: /opt/apps/
+      command: bash -c "python lru_log.py &&  eliot-tree *.log"
+      volumes: 
+        - "$PWD:/opt/apps/"
