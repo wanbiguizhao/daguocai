@@ -83,3 +83,9 @@ to_file(open("eliot.log", "ab"))
 
 
 ![eliot-代码示例](./images/log-2.png)
+
+### 查看日志命令
+
+```
+ eliot-tree *.log
+```
